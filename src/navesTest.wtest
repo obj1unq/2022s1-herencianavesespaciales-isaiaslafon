@@ -25,7 +25,12 @@ describe "Nave de carga" {
 		naveLlena.recibirAmenaza()
 		assert.equals(0, naveLlena.carga())
 	}
-
+	
+	test "propulsar sin velocidad (vacía) queda a 20.000kms" {
+		naveVacia.propulsar()
+		assert.equals(20000, naveVacia.velocidad())
+	}
+	
 }
 
 describe "Nave de pasajeros" {
@@ -54,6 +59,10 @@ describe "Nave de pasajeros" {
 		assert.that(naveSinPasajeros.alarma())
 	}
 
+	test "propulsar yendo a 290.000Kms queda a 300.000kms" {
+		naveConPasajeros.propulsar()
+		assert.equals(300000, naveConPasajeros.velocidad())
+	}
 }
 
 describe "Nave de combate" {
@@ -85,3 +94,13 @@ describe "Nave de combate" {
 	}
 }
 
+describe "Nave de residuos radiactivos" {
+
+	const naveLlena = new NaveDeResiduosRadiactivos(carga = 5000, velocidad = 10000, selladaAlVacio = true)
+
+	test "al recibir amenaza reduce su velocidad a 0 y no pierde su carga" {
+		naveLlena.recibirAmenaza()
+		assert.equals(5000, naveLlena.carga())
+		assert.equals(0, naveLlena.velocidad())
+	}
+}
