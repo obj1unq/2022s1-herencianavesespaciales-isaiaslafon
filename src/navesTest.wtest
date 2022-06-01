@@ -23,7 +23,7 @@ describe "Nave de carga" {
 
 	test "recibir amenaza" {
 		naveLlena.recibirAmenaza()
-		assert.equals(0, naveVacia.carga())
+		assert.equals(0, naveLlena.carga())
 	}
 
 }

@@ -1,5 +1,4 @@
 class NaveDeCarga {
-
 	var velocidad = 0
 	var property carga = 0
 
@@ -14,7 +13,6 @@ class NaveDeCarga {
 }
 
 class NaveDePasajeros {
-
 	var velocidad = 0
 	var property alarma = false
 	const cantidadDePasajeros = 0
