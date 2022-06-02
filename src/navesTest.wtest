@@ -30,11 +30,10 @@ describe "Nave de carga" {
 		naveVacia.propulsar()
 		assert.equals(20000, naveVacia.velocidad())
 	}
-	
 }
 
 describe "Nave de pasajeros" {
-
+	
 	const naveSinPasajeros = new NaveDePasajeros()
 	const naveConPasajeros = new NaveDePasajeros(cantidadDePasajeros = 296, velocidad = 290000)
 
@@ -61,6 +60,12 @@ describe "Nave de pasajeros" {
 
 	test "propulsar yendo a 290.000Kms queda a 300.000kms" {
 		naveConPasajeros.propulsar()
+		assert.equals(300000, naveConPasajeros.velocidad())
+	}
+	
+	//NUEVO
+	test "al preparar con una velocidad de 290.000kms su nueva velocidad es de 300.000kms." {
+		naveConPasajeros.preparar()
 		assert.equals(300000, naveConPasajeros.velocidad())
 	}
 }
@@ -92,6 +97,21 @@ describe "Nave de combate" {
 		naveEnAtaque.recibirAmenaza()
 		assert.equals("Enemigo encontrado", naveEnAtaque.ultimoMensaje())
 	}
+
+	//NUEVO
+	test "al preparar en modo ataque sin moverse emite el mensaje Volviendo a la base y queda con velocidad de 15.000 kms" {
+		naveEnAtaque.velocidad(0)
+		naveEnAtaque.preparar()
+		assert.equals("Volviendo a la base", naveEnAtaque.ultimoMensaje())
+	}
+
+	//NUEVO
+	test "al preparar en modo reposo sin moverse emite el mensaje Volviendo a la base y queda con velocidad de 15.000 kms" {
+		naveEnReposo.velocidad(0)
+		naveEnReposo.preparar()
+		assert.equals("Saliendo en misión", naveEnReposo.ultimoMensaje())
+		assert.equals("Saliendo en misión", naveEnReposo.ultimoMensaje())
+	}
 }
 
 describe "Nave de residuos radiactivos" {
@@ -102,5 +122,14 @@ describe "Nave de residuos radiactivos" {
 		naveLlena.recibirAmenaza()
 		assert.equals(5000, naveLlena.carga())
 		assert.equals(0, naveLlena.velocidad())
+	}
+	
+	//NUEVO
+	test "al preparar nave detenida queda sellada al vacío y su velocidad es de 15.000kms" {
+		naveLlena.selladaAlVacio(false)
+		naveLlena.recibirAmenaza()
+		naveLlena.preparar()
+		assert.that(naveLlena.selladaAlVacio())
+		assert.equals(15000, naveLlena.velocidad())
 	}
 }

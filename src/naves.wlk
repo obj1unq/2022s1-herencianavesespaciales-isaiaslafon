@@ -14,6 +14,13 @@ class Nave {
 	method preparar() {
 		self.aumentarVelocidad(15000)	
 	}
+	
+	method recibirAmenaza()
+			
+	method encontrarEnemigo(){
+		self.recibirAmenaza()
+		self.propulsar()
+	}
 }
 
 class NaveDeCarga inherits Nave{
@@ -23,9 +30,9 @@ class NaveDeCarga inherits Nave{
 
 	method excedidaDeVelocidad() = velocidad > 100000
 
-	method recibirAmenaza() {
+	override method recibirAmenaza() {
 		carga = 0
-	}
+	}	
 }
 
 class NaveDeResiduosRadiactivos inherits NaveDeCarga{
@@ -51,10 +58,9 @@ class NaveDePasajeros  inherits Nave{
 
 	method estaEnPeligro() = velocidad > self.velocidadMaximaLegal() or alarma
 
-	method recibirAmenaza() {
+	override method recibirAmenaza() {
 		alarma = true
 	}
-
 }
 
 class NaveDeCombate  inherits Nave{
@@ -73,7 +79,7 @@ class NaveDeCombate  inherits Nave{
 
 	method estaInvisible() = velocidad < 10000 and modo.invisible()
 
-	method recibirAmenaza() {
+	override method recibirAmenaza() {
 		modo.recibirAmenaza(self)
 	}
 
@@ -108,4 +114,3 @@ object ataque {
 		nave.emitirMensaje("Volviendo a la base")
 	}
 }
-
