@@ -1,4 +1,4 @@
-class Nave {
+class Nave { //Clase abstracta por tener método abstracto
 	var velocidad = 0
 	
 	method velocidad() = velocidad
@@ -15,9 +15,9 @@ class Nave {
 		self.aumentarVelocidad(15000)	
 	}
 	
-	method recibirAmenaza()
+	method recibirAmenaza() //Método abstracto
 			
-	method encontrarEnemigo(){
+	method encontrarEnemigo(){ //Method Template
 		self.recibirAmenaza()
 		self.propulsar()
 	}

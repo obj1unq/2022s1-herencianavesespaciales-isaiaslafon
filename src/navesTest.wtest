@@ -68,6 +68,12 @@ describe "Nave de pasajeros" {
 		naveConPasajeros.preparar()
 		assert.equals(300000, naveConPasajeros.velocidad())
 	}
+	//NUEVO
+	test "al encontrar enemigos sin pasajeros ni velocidad queda con velocidad en 20.000 kms y su alarma en caso de emergencia activada" {
+		naveSinPasajeros.encontrarEnemigo()
+		assert.equals(20000, naveSinPasajeros.velocidad())
+		assert.that(naveSinPasajeros.alarma())
+	}
 }
 
 describe "Nave de combate" {
